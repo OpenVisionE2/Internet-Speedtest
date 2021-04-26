@@ -8,5 +8,5 @@ setup(name='enigma2-plugin-extensions-internetspeedtest',
        description='Internet speed test for enigma2',
        packages=[pkg],
        package_dir={pkg: 'usr'},
-       package_data={pkg: ['*.png', '*/*.png']},
+       package_data={pkg: ['*.png', '*/*.png', 'locale/*/LC_MESSAGES/*.mo']},
       )
