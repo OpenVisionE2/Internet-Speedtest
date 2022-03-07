@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #Mod by madhouse
-from __future__ import print_function
 import re
 from Components.Button import Button
 from os import remove, environ, chmod, path
@@ -13,13 +12,20 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from six import PY2
 
 plugin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/InternetSpeedTest/speedtest.")
 font = resolveFilename(SCOPE_PLUGINS, "Extensions/InternetSpeedTest/fonts")
 skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/InternetSpeedTest/")
-cmd = "python " + plugin_path + ".pyo"
+
+if PY2:
+	cmd = "python " + plugin_path + "pyo"
+else:	
+	cmd = "python3 " + plugin_path + "pyc"
+
 if path.exists(plugin_path):
     chmod(plugin_path, 0o755)
+
 HD = getDesktop(0).size()
 
 PluginLanguageDomain = "speedtest"
@@ -127,13 +133,15 @@ class internetspeedtest(Screen):
         self.close()
 
 
-def main(session, iface):
+def menu(menuid, **kwargs):
+    return [(_("Internet Speed Test"), main, "InternetSpeedTest", 70)]
+
+
+def main(session, **kwargs):
     session.open(internetspeedtest)
 
 
-def callFunction(iface):
-    return main
-
-
 def Plugins(**kwargs):
-    return PluginDescriptor(name=_("InternetSpeedTest"), description=_("Internet Speed Test") + "\n", where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "menuEntryName": lambda x: _("InternetSpeedTest"), "menuEntryDescription": lambda x: _("Internet Speed Test...") + "\n"})
+    NAME = (_('InternetSpeedTest'))
+    DES = (_('Internet Speed Test'))
+    return PluginDescriptor(name=NAME, description=DES, where=PluginDescriptor.WHERE_MENU, fnc=menu, needsRestart=False)
