@@ -20,7 +20,7 @@ skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/InternetSpeedTest/")
 
 if PY2:
 	cmd = "python " + plugin_path + "pyo"
-else:	
+else:
 	cmd = "python3 " + plugin_path + "pyc"
 
 if path.exists(plugin_path):
