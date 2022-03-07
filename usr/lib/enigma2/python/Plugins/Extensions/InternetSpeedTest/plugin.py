@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #Mod by madhouse
+from __future__ import print_function
 import re
 from Components.Button import Button
 from os import remove, environ, chmod, path
@@ -85,7 +86,7 @@ class internetspeedtest(Screen):
         self.container.execute(cmd)
 
     def action(self, retval):
-        print("retval", retval)
+        print(("retval", retval))
         print("finished test")
         self.finished = True
 
