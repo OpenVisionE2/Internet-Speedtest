@@ -84,7 +84,7 @@ class internetspeedtest(Screen):
         self.container.execute(cmd)
 
     def action(self, retval):
-        print(("retval", retval))
+        print("retval", retval)
         print("finished test")
         self.finished = True
 
