@@ -134,9 +134,9 @@ class internetspeedtest(Screen):
 
 def menu(menuid, **kwargs):
     if menuid == "scan":
-    	return [(_("Internet Speed Test"), main, "InternetSpeedTest", None)]
+        	return [(_("Internet Speed Test"), main, "InternetSpeedTest", None)]
     else:
-    	return []
+        	return []
 
 
 def main(session, **kwargs):
